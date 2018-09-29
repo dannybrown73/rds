@@ -1,0 +1,11 @@
+{% from "header/banner/banner-macro.twig" import banner %}
+{{ banner (
+    {
+        breadcrumbs: true
+    },
+    {
+        breadcrumb_grandparent: "Blocks",
+        breadcrumb_parent: "Banners",
+        title: "Banner with Breadcrumbs"
+    }
+) }}

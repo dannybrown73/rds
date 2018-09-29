@@ -1,0 +1,136 @@
+.l-cms-body {
+	max-width: calc(#{map-get($breakpoints, m)} + #{$block-padding-m} + #{$block-padding-m});
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 $block-padding-s;
+
+	@include media(">=s") {
+		padding: 0 $block-padding-m;
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
+
+.l-cms-body--aside {
+	max-width: calc(#{map-get($breakpoints, l)} + #{$block-padding-m} + #{$block-padding-m});
+}
+
+// Note: not sure if this is the best name, but doesn't need to be a u-class either, only used on nav and aside
+.l-cms-body__sticky {
+	position: sticky;
+	top: 15px;
+}
+
+// Nav Container Styles
+// =======================================
+
+.l-cms-body__nav {
+	display: none;
+
+	@include media(">s") {
+		flex: 0 0 220px; // actual nav width is 190, 30px is added to accommodate for padding
+		max-width: 220px;
+		display: block;
+		padding-right: 15px;
+		margin-right: 30px;
+		border-right: 1px solid $grey;
+	}
+
+	@include media(">m") {
+		flex: 0 0 280px; // actual nav width is 250, 30px is added to accommodate for padding
+		max-width: 280px;
+	}
+}
+
+// CMS for shared b-menu in desktop view
+// =======================================
+
+.l-cms-body__nav .b-nav-menu a {
+	background-color: white;
+}
+
+.l-cms-body__nav .b-nav-menu li a {
+	border: none;
+	line-height: 2.75;
+}
+
+// match icon height to line-height
+.l-cms-body__nav li .menu__icon {
+	height: 44px;
+	line-height: 44px;
+	left: 87%;
+}
+// target .menu__child--second on desktop
+.l-cms-body__nav .b-nav-menu li li a {
+	background-color: white;
+	font-size: 14px;
+	color: $grey-vader;
+	padding-left: 15px;
+
+	&:hover {
+		color: $red;
+	}
+}
+
+.l-cms-body__nav .b-nav-menu li li li a {
+	padding-left: 30px;
+}
+
+// match icon height to line-height
+.l-cms-body__nav .b-nav-menu li li .menu__icon {
+	height: 38px;
+	line-height: 38px;
+}
+
+.l-cms-body__nav .b-nav-menu .menu__child--third li a {
+	padding-left: 35px;
+}
+
+.l-cms-body__nav .b-nav-menu .menu__child--fourth li a {
+	padding-left: 55px;
+}
+
+// Main Container Styles
+// =======================================
+
+.l-cms-body__main {
+	display: flex;
+	flex-direction: column;
+
+	@include media(">s") {
+		flex: 1;
+		padding: 5px 0;
+	}
+
+	@include media(">l") {
+		flex-direction: row;
+	}
+}
+
+// Content Container Styles
+// =======================================
+
+.l-cms-body__aside {
+	margin-top: 40px;
+
+	@include media(">l") {
+		flex: 0 0 300px;
+		max-width: 300px;
+		padding: 10px 0 0 0;
+		margin: 0 0 0 60px;
+	}
+}
+
+// Modifier to position aside above content area
+// =======================================
+
+@include media("<l") {
+	.l-cms-body__main--aside-top {
+		flex-direction: column-reverse;
+	}
+
+	.l-cms-body__main--aside-top .body-cms__aside {
+		margin-top: 0;
+		margin-bottom: 40px;
+	}
+}

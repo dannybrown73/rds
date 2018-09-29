@@ -1,0 +1,33 @@
+.l-overlay-modal {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background: white;
+	overflow-y: auto;
+	top: 75px; //account for masthead
+	left: 0;
+}
+
+.modal__search {
+	background-color: $grey;
+	padding: 20px 0;
+}
+
+// Modifier for header on a dark nav
+//.c-modal--dark {
+//	background: black;
+//
+//	.c-modal__header {
+//		background: $red;
+//		border-bottom: 1px solid darken(white, 30%);
+//
+//		.c-modal__header-text {
+//			color: white;
+//		}
+//
+//		.c-modal__close-button {
+//			color: white;
+//		}
+//	}
+//}

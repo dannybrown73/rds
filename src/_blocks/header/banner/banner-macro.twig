@@ -1,0 +1,43 @@
+{% macro banner(settings, data) %}
+{% if settings.variant == "img" %}
+<style>
+    .b-header-banner--img {
+        background-image: url({{ data.img_url_s }});
+    }
+    @media (min-width: 769px) {
+        .b-header-banner--img {
+            background-image: url({{ data.img_url_s }});
+        }
+    }
+</style>
+{% endif %}
+<div class="b-header-banner{% if settings.variant == "img" %} b-header-banner--img{% endif %}{% if data.img_opacity == "dark" %} b-header-banner--img-dark{% elseif data.img_opacity == "light" %} b-header-banner--img-light{% endif %}{% if data.img_position == "top" %} b-header-banner--img-top{% elseif data.img_position == "bottom" %} b-header-banner--img-bottom{% endif %} u-block-full{% if data.settings.variant != "img" %} u-block-full--grey"{% endif %}>
+    <div class="banner__container">
+{% if settings.breadcrumbs == true %}
+        <nav aria-label="breadcrumb">
+            <ol class="banner__breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <li class="banner__breadcrumb-item" itemprop="breadcrumb"><a href="{{ site.url }}">Home</a></li>
+{% if data.breadcrumb.greatgrandparent|length %}
+                <li class="banner__breadcrumb-item" itemprop="breadcrumb"><a href="..">{{ data.breadcrumb.greatgrandparent }}</a></li>
+{%  endif %}
+{% if data.breadcrumb_grandparent|length %}
+                <li class="banner__breadcrumb-item" itemprop="breadcrumb"><a href="../{{ data.breadcrumb.greatgrandparent }}">{{ data.breadcrumb_grandparent }}</a></li>
+{%  endif %}
+{% if data.breadcrumb_parent|length %}
+                <li class="banner__breadcrumb-item" itemprop="breadcrumb"><a href="..">{{ data.breadcrumb_parent }}</a></li>
+{%  endif %}
+                <li class="banner__breadcrumb-item active u-visually-hidden" itemprop="breadcrumb" aria-current="page">{{ data.title }}</li>
+            </ol>
+        </nav>
+{%  endif %}
+        <h1 class="banner__title">{{ data.title }}</h1>
+{% if settings.buttons == true %}
+        <p class="banner__buttons">
+{% for item in data.button %}
+            <a class="c-buttons-button" href="{{ item.url }}" role="button">{{ item.title }}</a>
+{% endfor %}
+        </p>
+{% endif %}
+    </div>
+</div>
+{% endmacro %}

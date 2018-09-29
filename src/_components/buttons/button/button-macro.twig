@@ -1,0 +1,3 @@
+{% macro button(settings, data, heading) %}
+<a class="c-buttons-button{% if settings.variant == "ghost" %} c-buttons-button--ghost{% endif %}{% if settings.variant == "grey" %} c-buttons-button--grey{% endif %}" href="{{ data.url }}">{{ data.title }}{% if data.icon|length %} {% include "icons/play-button.svg" ignore missing %}{% endif %}</a>
+{% endmacro %}

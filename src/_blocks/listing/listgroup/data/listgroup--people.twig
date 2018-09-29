@@ -1,0 +1,35 @@
+{% from "listing/listgroup/listgroup-macro.twig" import listgroup %}
+{{ listgroup (
+    {
+        color: "",
+        context: "people",
+        heading: "List Group - People variant",
+        linkColor: false
+    },
+        [
+          {
+            title: "Bill Murray",
+            subtitle: "Actor/Writer",
+            url: "http://www.imdb.com/name/nm0000195/",
+            img: "https://cu-raven.s3.amazonaws.com/assets/img/photos/fill-murray.jpg"
+          },
+         {
+            title: "Peter Venkman",
+            subtitle: "Ghost buster",
+            url: "http://www.imdb.com/name/nm0000195/",
+            img: "https://cu-raven.s3.amazonaws.com/assets/img/photos/fill-murray.jpg"
+          },
+          {
+            title: "Carl Spackler",
+            subtitle: "Caddy for Shack",
+            url: "http://www.imdb.com/name/nm0000195/",
+            img: "https://cu-raven.s3.amazonaws.com/assets/img/photos/fill-murray.jpg"
+          },
+         {
+            img: "https://cu-raven.s3.amazonaws.com/assets/img/photos/fill-murray.jpg",
+            subtitle: "Groundhog for a Day",
+            title: "Phil Connors",
+            url: "http://www.imdb.com/name/nm0000195/"
+          }
+        ]
+) }}

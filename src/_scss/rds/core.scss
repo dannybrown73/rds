@@ -1,0 +1,96 @@
+/*
+                          .'`  '-.
+                         /     _  \
+                        /     (.)_J
+                       /        / `'-..
+                     .'         \`-..--`\
+                   ,;-'~""'.    /`"'""""'`  "Please follow our SCSS coding standards @ https://goo.gl/VvX6zS... Kaw!"
+                  /`        \  /
+                /`    /      | ;
+               /`       .'   | |
+              ;           /  ; ;
+             /   /     .'   / ;
+            ;             .' /
+           /  .'  /   _.-' .'
+         .'        .-' _,-;
+        /   _..--'`   /_.'
+       ;.-;` / ;., .-'\=\        ,###"
+        /   .'/  \=\   \=\    ,###"
+       /.'/ //    \=\   \=\_###"
+      /  . '/      \=\___#-.)))
+     /  / _//      ((--.)))```
+     |_/ / /       ,###"```
+     /  / /     ,###"
+    /.'/_/   ,###"
+    |_/    ,##
+
+Important!
+partials marked
+*** required ***
+must be imported  */
+
+// Base partials
+// -----------------------------------------------------
+// "Maintainable media queries"
+@import 'base/vendor/include-media'; // *** required ***
+// Project variables
+@import 'base/vars/vars'; // *** required ***
+// State styles
+@import 'base/state/state'; // *** required ***
+// Style resets
+@import 'base/reset/reset'; // *** required ***
+// Default styling
+@import 'base/elements/base'; // *** required ***
+// Although seemingly unremarkable in appearance,
+// the utility belt is one of Batman's most important tools in fighting crime.
+@import 'base/utilities/utilities'; // *** required ***
+
+// Layouts
+// -------
+@import '../../_layouts/body/layouts'; // *** required ***
+@import '../../_layouts/overlays/modal/modal'; // *** required ***
+
+// Blocks
+// ------
+// header blocks
+@import '../../_blocks/header/masthead/masthead'; //inlined as critical CSS*/
+// TODO check inline business
+//@import "blocks/header/banner"; //inlined as critical CSS
+@import '../../_blocks/header/banner/banner';
+@import '../../_blocks/header/search/search';
+
+// content blocks
+@import '../../_blocks/content/content/content'; // *** required *** MUST be the first block or component imported
+
+
+
+// footer blocks
+@import '../../_blocks/footers/footer-brand/footer-brand';
+@import '../../_blocks/footers/footer-simple/footer-simple';
+@import '../../_blocks/footers/footer-sitemap/footer-sitemap';
+
+// listing blocks
+@import '../../_blocks/listing/listgroup/listgroup';
+
+// nav blocks
+@import '../../_blocks/nav/menu/menu';
+
+// Core Components
+// ---------------
+@import 'components/alerts/badges'; // *** required ***
+@import '../../_components/form/search/search'; // *** required ***
+
+// Buttons
+@import 'components/buttons/button'; // *** required ***
+@import 'components/buttons/hamburger'; // *** required ***
+@import '../../_components/cards/card/card'; // *** required ***
+@import 'components/header/logo.scss';
+@import '../../_components/icons/icons';
+
+// Content
+@import 'components/content/img-caption'; // *** required ***
+@import 'components/content/table'; // *** required ***
+@import 'components/content/video'; // *** required ***
+
+// Nav
+@import 'components/content/accordion';

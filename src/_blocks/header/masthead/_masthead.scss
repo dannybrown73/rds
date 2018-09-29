@@ -1,0 +1,298 @@
+.b-header-masthead {
+	display: flex;
+	align-items: center;
+	height: 77px; // height is 75 + 2 to accommodate for the border
+	border-top: 2px solid $red;
+	background-color: white;
+
+	// Aligns the last item to the left
+	& > :last-child {
+		margin-left: auto;
+	}
+}
+
+// used in conjuction with js to stick the masthead on scroll up
+.b-header-masthead--sticky-scroll {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	border-bottom: 1px solid $grey;
+
+	& ~ .b-header-banner,
+	& ~ .tns-outer {
+		margin-top: 78px !important; // avoid the jumping from the loss of masthead height when made position fixed.
+	}
+
+	&.b-header-masthead--shadow {
+		box-shadow: 0px 10px 11px -7px $grey;
+	}
+}
+
+// Masthead Logo
+// =======================================
+
+.masthead__brand {
+	flex-basis: auto;
+	max-width: 300px;
+	font-size: 17px;
+	margin-left: 5px;
+
+	svg {
+		margin-right: 2px;
+		min-width: 45px;
+	}
+
+	@include media('>s') {
+		font-size: 21px;
+		margin-left: 15px;
+	}
+
+	a {
+		//display: flex;
+		align-items: center;
+	}
+}
+
+.js-shave-sitename {
+	@include media('>s') {
+		font-size: 19px;
+	}
+}
+
+.masthead__brand--s {
+	font-size: 17px;
+}
+
+
+// Masthead Nav
+// =======================================
+
+.b-header-masthead nav {
+	display: none;
+}
+
+@include media('>s') {
+	.b-header-masthead nav {
+		display: block;
+		height: 75px; /* Menu height */
+		margin: 0 0 0 30px;
+		padding-left: 15px;
+		border-left: 1px solid $grey-kenobi;
+		overflow: hidden;
+	}
+
+	.masthead__nav {
+		position: relative;
+		margin: 0;
+		list-style-type: none;
+		max-height: 150px; /* Menu height x 2 */
+	}
+
+	.masthead__nav-item {
+		font-size: 14px;
+		display: inline-block;
+		position: relative;
+
+		a {
+			display: block;
+			padding: 0 15px;
+			line-height: 75px;
+
+			&:hover {
+				color: $red;
+			}
+		}
+	}
+
+	.masthead__nav a {
+		display: block;
+		color: $black;
+		white-space: nowrap;
+		line-height: 75px; /* Menu height */
+		height: 75px; /* Menu height */
+	}
+
+	.masthead__nav-item--more {
+		position: absolute; /* Move the menu button out of flow */
+		bottom: 75px; /* Move upwards, the same distance as the menu height */
+		right: 0;
+		box-shadow: -10px 0px 30px 20px white;
+		background: white;
+	}
+}
+
+// Masthead Buttons Container
+// =======================================
+
+.masthead__btns {
+	flex: 0 0 auto;
+	display: flex; // removes space between inline li's
+	margin: 0;
+	list-style-type: none;
+}
+
+.js-modalmenu--is-active .masthead__btns li:not(:nth-last-child(-n + 2)),
+.js-modalmenu--is-active .masthead__nav {
+	display: none;
+}
+
+// Masthead Search / Hamburger
+// =======================================
+.masthead__login,
+.masthead__search,
+.masthead__hamburger{
+	display: inline-block;
+	text-align: center;
+
+	a,
+	button {
+		display: block;
+		width: 60px;
+		height: 75px;
+		font-size: 14px;
+		line-height: 75px;
+		border-left: 1px solid $grey-kenobi;
+
+		@media (hover: hover) {
+			&:hover {
+				background-color: $grey;
+			}
+		}
+
+		@include media('>s') {
+			min-width: 75px;
+		}
+	}
+
+	svg {
+		margin-top: 28px;
+	}
+	// hamburger needed further aligning
+	span {
+		margin-top: 3px;
+	}
+}
+
+.masthead__login {
+	display: none;
+
+	@include media('>600px') {
+		display: inline-block;
+	}
+}
+
+.masthead__login a {
+	width: auto;
+	padding: 0 30px;
+}
+
+@include media('>s') {
+	.masthead__hamburger {
+		display: none;
+	}
+}
+
+.masthead__hamburger--show {
+	display: inline-block !important;
+}
+
+// Masthead Button / Dropdown / Submenu
+// =======================================
+
+.masthead__button {
+	display: none;
+
+	@include media('>700px') {
+		display: inline-block;
+		position: relative;
+		font-weight: 500;
+
+		// Reveals dropdown is in use
+		&:hover {
+			.masthead__button-submenu {
+				display: block;
+			}
+
+			// Keep parent hover state active when submenu is visible
+			& > .masthead__button-expand {
+				background-color: $grey;
+				color: $black;
+
+				&:after {
+					color: $black;
+				}
+			}
+		}
+	}
+}
+
+.masthead__button-link,
+.masthead__button-expand {
+	display: inline-block;
+	font-size: 14px;
+	padding: 0 20px;
+	color: white;
+	line-height: 75px;
+	background-color: $red;
+	cursor: pointer;
+
+	&:hover {
+		color: $black;
+		background-color: $grey;
+	}
+}
+
+.masthead__button-expand {
+	position: relative;
+	padding-right: 25px;
+
+	&:after {
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-top: 4px solid;
+		border-right: 4px solid transparent;
+		border-left: 4px solid transparent;
+		top: 47%;
+		right: 12px;
+		color: #fff;
+	}
+}
+
+.masthead__button-submenu {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	right: 0;
+	top: 75px;
+	min-width: 200px;
+	max-width: 280px;
+	margin: 0;
+	background-color: $grey;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+
+	li {
+		margin: 0;
+		list-style-type: none;
+
+		a {
+			display: block;
+			padding: 15px;
+			line-height: normal;
+			font-size: 13px;
+
+			&:hover,
+			&:active {
+				background-color: white;
+			}
+		}
+
+		&:not(:last-child) {
+			border-bottom: 1px solid $grey-luke;
+		}
+	}
+}

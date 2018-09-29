@@ -1,0 +1,7 @@
+:sparkles: **New RDS Block ** :sparkles:
+
+Duplicate these review steps when reviewing any block before it becomes 1.0 versioned.
+- [ ] HTML code review by core two devs
+- [ ] CSS code review by two core devs.
+- [ ] Establish tests and that all have passed.
+- [ ] Fully tested in IE 11 and last two versions of Firefox, Safari, Chrome, Edge, Safari iOS, Chrome iOs, Chrome Android.

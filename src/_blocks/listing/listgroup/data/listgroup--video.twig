@@ -1,0 +1,31 @@
+{% from "listing/listgroup/listgroup-macro.twig" import listgroup %}
+{{ listgroup (
+    {
+        color: "",
+        context: "video",
+        heading: "List Group - Video variant",
+        linkColor: false
+    },
+    [
+        {
+            title: "White-necked Raven",
+            url: "https://www.youtube.com/watch?v=Nrmj0fIUJAc",
+            img: site.images ~ "img-1.jpg"
+        },
+        {
+            title: "Common Raven",
+            url: "https://www.youtube.com/watch?v=KpApJr53Sgo",
+            img: site.images ~ "img-2.jpg"
+        },
+        {
+            title: "Thick-billed raven",
+            url: "https://www.youtube.com/watch?v=uJST7x-s548",
+            img: site.images ~ "img-3.jpg"
+        },
+        {
+            title: "Chihuahuan raven",
+            url: "https://www.youtube.com/watch?v=AXxVw76hgtk",
+            img: site.images ~ "img-4.jpg"
+        }
+    ]
+) }}

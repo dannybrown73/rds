@@ -1,0 +1,34 @@
+{% from "listing/listgroup/listgroup-macro.twig" import listgroup %}
+{{ listgroup (
+    {
+        color: "black",
+        heading: "List Group with image",
+        linkColor: false
+    },
+    [
+        {
+            title: "White-necked raven",
+            subtitle: "Corvus albicollis",
+            url: "https://en.wikipedia.org/wiki/White-necked_raven",
+            img: site.images ~ "img-1.jpg"
+        },
+        {
+            title: "Common raven",
+            subtitle: "Corvus corax",
+            url: "https://en.wikipedia.org/wiki/White-necked_raven",
+            img: site.images ~ "img-2.jpg"
+        },
+        {
+            title: "Thick-billed raven",
+            subtitle: "Corvus crassirostris",
+            url: "https://en.wikipedia.org/wiki/White-necked_raven",
+            img: site.images ~ "img-3.jpg"
+        },
+        {
+            title: "Chihuahuan raven",
+            subtitle: "Corvus cryptoleucus",
+            url: "https://en.wikipedia.org/wiki/Chihuahuan_raven",
+            img: site.images ~ "img-4.jpg"
+        }
+    ]
+) }}

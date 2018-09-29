@@ -1,0 +1,132 @@
+/*
+ * Base Card Styles
+ * =======================================
+ */
+.u-block--secondary .c-cards-card {
+	box-shadow: inset 0 0 0 1px $grey;
+}
+
+.c-cards-card {
+	position: relative;
+	transition: 0.5s;
+	flex: 1; // helps with equal vert height in listings
+	box-shadow: inset 0 0 0 1px $grey-kenobi;
+	background-color: white;
+	max-width: 768px;
+
+	&:hover {
+		box-shadow: 0 5px 8px 2px rgba(49, 49, 49, 0.1);
+		overflow: visible;
+		z-index: 10000;
+		background: white;
+	}
+
+	&:hover .card__title {
+		color: $red;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		width: 25px;
+		height: 1px;
+		left: 20px;
+		bottom: 15px;
+		margin-top: 20px;
+		background: #cf112d;
+		display: inline-block;
+	}
+
+	// to use if we ever use a card without an image
+	//&--no-img {
+	//	max-width: 384px;
+	//}
+}
+
+.card__url:hover {
+	text-decoration: none !important;
+}
+
+.card__img {
+	max-width: 768px;
+	width: 100%;
+	margin-bottom: 0 !important;
+}
+
+/*
+ * Card Content Elements
+ * =======================================
+ */
+
+.card__body {
+	padding: 20px 20px 40px 20px;
+	min-height: 130px;
+}
+
+.card__title {
+	font-size: 16px;
+	margin: 0 0 5px;
+	line-height: 1.25;
+	border: none;
+
+	@include media(">s") {
+		font-size: 17px;
+	}
+}
+
+.card__date {
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 1.35;
+	color: $grey-anakin;
+}
+
+.card__text {
+	font-size: 15px;
+	font-weight: 300;
+	line-height: 1.4;
+}
+
+.card__text--action {
+	color: $red;
+}
+
+/*
+ * Card Icon Styles
+ * =======================================
+ */
+
+.card__icon {
+	background-size: 60px;
+}
+
+@include media("<=s") {
+	.u-grid--s2 .card__icon {
+		background-size: 45px;
+	}
+}
+
+/*
+ * People Card Styles
+ * =======================================
+ */
+
+.c-cards-card--people {
+	text-align: center;
+
+	&:after {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+.c-cards-card--people .card__figure {
+	padding-top: 20px;
+}
+
+.c-cards-card--people .card__img {
+	border-radius: 50%;
+	border: 5px solid rgba(#eee, 0.75);
+	margin: 0 auto;
+	max-width: 55%;
+}

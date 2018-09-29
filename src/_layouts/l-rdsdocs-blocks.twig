@@ -1,0 +1,113 @@
+{% extends "base" %}
+
+{% block main %}
+<main>
+    <div class="b-content u-block">
+        <p>{{ page.desc | raw }}</p>
+    <h2 class="u-no-borders">Base example</h2>
+    </div>
+        {% if page.meta.handle == "button" %}<p>{%  endif %}
+        {% if page.meta.handle == "card" %}<div class="u-block"><ul class="u-grid u-grid--3"><li>{%  endif %}
+        {% if page.meta.handle == "accordion" %}<div class="b-content u-block">{%  endif %}
+            {% if page.inc == true %}
+                {% include page.meta.path ~ page.meta.handle ~ ".twig" ignore missing %}
+            {% else %}
+                {% include page.meta.path ~ 'data/'~ page.meta.handle ~ ".twig" ignore missing %}
+            {% endif %}
+        {% if page.meta.handle == "accordion" %}</div>{%  endif %}
+        {% if page.meta.handle == "card" %}</li></ul></div>{%  endif %}
+        {% if page.meta.handle == "button" %}</ul></div>{%  endif %}
+    </section>{% if page.meta.handle == "global-nav" %}<br><br>{%  endif %}
+    <section class="u-block u-width-s">
+        <div class="b-tabs" role="tablist">
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button u-icon--xxs" href="#">{% include "icons/code.svg" ignore missing %}HTML</a>
+                <div class="b-tabs__panel" role="tabpanel">
+                <pre>
+                    <code class="html">{% filter escape -%}{% if page.inc == true %}{% include page.meta.path ~ page.meta.handle ~ ".twig" ignore missing %}{% else %}{% include page.meta.path ~ 'data/' ~ page.meta.handle ~ '.twig' ignore missing %}{% endif %}{% endfilter %}
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button u-icon--xxs" href="#">{% include "icons/info.svg" ignore missing %} Info</a>
+                <div class="b-tabs__panel" role="tabpanel">{% include "/_includes/docs-blocks/info.twig" ignore missing %}</div>
+            </div>
+            {% if page.inc != true %}
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button u-icon--xxs" href="#">{% include "icons/data.svg" ignore missing %} Data Props</a>
+                <div class="b-tabs__panel" role="tabpanel">{% include "/_includes/docs-blocks/data.twig" ignore missing %}</div>
+            </div>
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button" href="#">- YAML</a>
+                <div class="b-tabs__panel" role="tabpanel">
+                    <pre><code class="yaml">{%- filter escape -%}{%- include page.meta.path ~ 'data/' ~ page.meta.handle ~ '.yml' ignore missing %}{% endfilter %}</code></pre>
+                </div>
+            </div>
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button" href="#">{} JSON</a>
+                <div class="b-tabs__panel" role="tabpanel">
+                    <pre><code class="json">{% filter escape -%}{%- include page.meta.path ~ 'data/' ~ page.meta.handle ~ '.json' ignore missing %}{% endfilter %}</code></pre>
+                </div>
+            </div>
+            {% endif %}
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button u-icon--xxs" href="#">{% include "../_themes/rds-docs/components" ignore missing %}  Vue</a>
+                <div class="b-tabs__panel" role="tabpanel">
+                    Coming soon...
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% for item in page.examples %}
+
+    <div class="u-block">
+    <h2 id="{{ item.name }}">{% if item.nicename|length %}{{ item.nicename }}{% else %}{{ page.title }} - {{ item.name|capitalize }} variant {% endif %}</h2>
+    </div>
+    {% if page.meta.handle == "button" %}<p>{%  endif %}
+    {% if page.meta.handle == "card" %}<div class="u-block u-width-s"><ul class="u-grid u-grid--3"><li>{%  endif %}
+    {% if page.meta.handle == "accordion" %}<div class="b-content u-block">{%  endif %}
+        {% include page.meta.path ~ 'data/'~ page.meta.handle ~ '--' ~ item.name ~ '.twig' ignore missing %}
+    {% if page.meta.handle == "accordion" %}</div>{%  endif %}
+    {% if page.meta.handle == "card" %}</li></ul></div>{%  endif %}
+    {% if page.meta.handle == "button" %}</p>{%  endif %}
+    <section class="u-block u-width-s">
+        <div class="b-tabs" role="tablist">
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button u-icon--xxs" href="#">{% include "icons/code.svg" ignore missing %} HTML</a>
+                <div class="b-tabs__panel" role="tabpanel">
+                <pre>
+                    <code class="html">{% filter escape -%}
+        {% include page.meta.path ~ 'data/' ~ page.meta.handle ~ '--' ~ item.name ~ '.twig' ignore missing %}
+                    {% endfilter %}
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button" href="#">- YAML</a>
+                <div class="b-tabs__panel" role="tabpanel">
+                    <pre>
+                        <code class="yaml">{%- filter escape -%}{%- include page.meta.path ~ 'data/' ~ page.meta.handle ~ '--' ~ item.name ~ '.yml' ignore missing %}{% endfilter %}</code>
+                    </pre>
+                </div>
+            </div>
+            <div class="b-tabs__tab" role="tab">
+                <a class="b-tabs__button" href="#">JSON</a>
+                <div class="b-tabs__panel" role="tabpanel">
+                    <pre>
+                        <code class="json">{% filter escape -%}{%- include page.meta.path ~ 'data/' ~ page.meta.handle ~ '--' ~ item.name ~ '.json' ignore missing %}{% endfilter %}</code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endfor %}
+    <div class="b-content u-block">
+          {% block content %}
+          {% endblock %}
+      </div>
+</main>
+{% endblock %}

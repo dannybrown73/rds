@@ -1,0 +1,41 @@
+{% if page.banner.settings.variant == "img" %}
+    <style>
+        .b-header-banner--img {
+            background-image: url({{ page.banner.data.img.url_s }});
+        }
+        @media (min-width: 769px) {
+            .b-header-banner--img {
+                background-image: url({{ page.banner.data.img.url }});
+            }
+        }
+    </style>
+{% endif %}
+<div class="b-header-banner{% if page.banner.settings.variant == "img" %} b-header-banner--img{% endif %}{% if page.banner.data.img.opacity == "dark" %} b-header-banner--img-dark{% elseif page.banner.data.img.opacity == "light" %} b-header-banner--img-light{% endif %}{% if page.banner.data.img.position == "top" %} b-header-banner--img-top{% elseif page.banner.data.img.position == "bottom" %} b-header-banner--img-bottom{% endif %} u-block u-block--full">
+    <div class="banner__container">
+        {% if page.banner.data.breadcrumbs == true %}
+        <nav aria-label="breadcrumb">
+            <ol class="banner__breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <li class="banner__breadcrumb-item" itemprop="breadcrumb"><a href="{{ site.url }}">Home</a></li>
+                {% if page.banner.data.breadcrumb.greatgrandparent|length %}
+                <li class="banner__breadcrumb-item" itemprop="breadcrumb"><a href="../../../">{{ page.banner.data.breadcrumb.greatgrandparent }}</a></li>
+                {%  endif %}
+                {% if page.banner.data.breadcrumb.grandparent|length %}
+                <li class="banner__breadcrumb-item" itemprop="breadcrumb"><a href="../../">{{ page.banner.data.breadcrumb.grandparent }}</a></li>
+                {%  endif %}
+                {% if page.banner.data.breadcrumb.parent|length %}
+                <li class="banner__breadcrumb-item"><a href="../">{{ page.banner.data.breadcrumb.parent }}</a></li>
+                {%  endif %}
+                <li class="banner__breadcrumb-item active u-visually-hidden" itemprop="breadcrumb" aria-current="page">{{ page.title }}</li>
+            </ol>
+        </nav>
+        {%  endif %}
+        <h1 class="banner__title">{{ page.title }}</h1>
+        {% if page.banner.data.buttons == true %}
+        <p class="banner__buttons">
+            {% for item in page.banner.data.button %}
+            <a class="c-buttons-button" href="{{ item.url }}" role="button">{{ item.title }}</a>
+            {% endfor %}
+        </p>
+        {% endif %}
+    </div>
+</div>

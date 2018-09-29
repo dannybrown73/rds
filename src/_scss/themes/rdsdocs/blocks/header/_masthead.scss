@@ -1,0 +1,11 @@
+.b-head-masthead {
+	height: 75px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+	border-bottom: 2px solid $grey;
+	background-color: white;
+}

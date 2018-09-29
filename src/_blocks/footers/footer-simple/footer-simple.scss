@@ -1,0 +1,41 @@
+.b-footer-simple {
+	text-align: center;
+	color: $grey-anakin;
+	padding-bottom: 40px;
+
+	& span {
+		line-height: 1.9;
+	}
+
+	& a,
+	& strong {
+		color: white;
+		line-height: 1.8;
+	}
+
+	& a:hover {
+		color: $red;
+	}
+}
+
+.simple__social {
+	margin: 40px 0;
+	list-style: none;
+
+	li {
+		display: inline-block;
+
+		&:not(:last-child) {
+			margin-right: 8px;
+		}
+	}
+
+	.u-icon {
+		padding: 8px;
+
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
+}

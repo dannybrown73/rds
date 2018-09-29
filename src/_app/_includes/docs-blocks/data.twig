@@ -1,0 +1,18 @@
+<table>
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for item in page.data %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.type }}</td>
+        <td>{{ item.desc }}</td>
+    </tr>
+    {% endfor %}
+	</tbody>
+</table>

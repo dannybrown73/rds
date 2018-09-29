@@ -1,0 +1,46 @@
+.b-footer-brand {
+	padding: 40px 0;
+	border-top:  1px solid $grey-vader;
+}
+
+.brand__logo {
+	display: block;
+	margin: 0 auto;
+	max-width: 280px;
+
+	svg {
+		width: 100%;
+		height: auto;
+	}
+
+	@include media('>s') {
+		max-width: 330px;
+	}
+}
+
+.brand__legal {
+	display: flex;
+	justify-content: space-between;
+	max-width: 290px;
+	margin: 20px auto 0 auto;
+	list-style: none;
+
+	@include media('>s') {
+		max-width: 330px;
+	}
+}
+
+.brand__legal-item {
+	font-size: 12px;
+
+	a {
+		color: $grey-luke;
+		border-bottom: 1px solid $grey-vader;
+		padding-bottom: 4px;
+
+		&:hover {
+			color: white;
+			border-bottom: 1px solid white;
+		}
+	}
+}

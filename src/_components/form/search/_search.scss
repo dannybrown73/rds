@@ -1,0 +1,51 @@
+// Search Component
+// ====================================
+
+.c-form-search {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 25px;
+	background-color: white;
+	border-radius: 100px;
+
+	label {
+		display: none;
+	}
+}
+
+.search__input {
+	flex: 0 0 calc(100% - 45px); // flex minus width of icon
+	max-width: calc(100% - 45px);
+	appearance: none; // prevents browser from hijacking border, font sizes, and more
+	-webkit-appearance: none; // TODO look at why autoprefixer4 isnt working on this for Safari
+	border: none;
+	font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-size: 18px;
+
+	&::placeholder {
+		color: $grey-vader;
+		opacity: 1;
+		transition: opacity 0.35s ease-in-out;
+	}
+
+	&:focus::placeholder {
+		opacity: 0.3;
+		transition: opacity 0.35s ease-in-out;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.search__button {
+	background: none;
+	border: none;
+	fill: $grey-vader;
+
+	span {
+		display: none;
+	}
+}

@@ -1,0 +1,598 @@
+//  RDS utility classes
+//  ---------------------
+//
+//  Table of Contents:
+//
+//   1. Grid
+//   2. Block
+//   3. Icon utils
+//   4. Property overrides
+//   5. Centering
+//   6. Misc utils
+//   7. Content
+
+// 1. Grid - flexbox
+// -----------------
+
+.u-grid {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0;
+	margin-left: -$grid-gutter;
+	margin-right: -$grid-gutter;
+	margin-bottom: 0;
+	list-style: none;
+
+	&:after {
+		content: "";
+		flex: auto;
+	}
+
+	// Default grid is 2 col on sm screens and 4 col lg screens
+	& > * {
+		width: 50%;
+		padding: $grid-gutter;
+		box-sizing: border-box;
+	}
+}
+
+.u-grid--1 > * {
+	width: 100%;
+}
+
+.u-grid--2 > * {
+	@include media(">=s") {
+		width: 50%;
+	}
+}
+
+.u-grid--3 > * {
+	@include media(">=s") {
+		width: 33.333333%;
+	}
+}
+
+.u-grid--4 > * {
+	@include media(">=870px") { // TODO: this needs more testing, Troy saw some odd results
+		width: 25%;
+	}
+}
+
+
+// modifier change grid to 2 cols on small screens
+@include media("<s") {
+	.u-grid--s1 > * {
+		width: 100%;
+	}
+}
+
+// remove grid gutters
+.u-grid--no-gutters {
+	margin: 0 !important;
+
+	& > * {
+		padding: 0;
+	}
+}
+
+// 2. Grid - Block
+// ---------------
+.u-block {
+	margin-bottom: $block-margin;
+}
+
+.u-row > .u-block {
+	margin-bottom: 0;
+}
+
+.u-block, .u-width-s {
+	max-width: 828px;
+}
+
+.u-block--m, .u-width-m {
+	max-width: 1084px;
+}
+
+.u-block--l, .u-width-l {
+	max-width: 1426px;
+}
+
+.u-block, .u-width-s, .u-width-m, .u-width-l {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.u-block,
+.u-block-full--grey,
+.u-block-full--black {
+	padding-right: 25px;
+	padding-left: 25px;
+
+	@include media(">=s") {
+		padding-right: 30px;
+		padding-left: 30px;
+	}
+}
+
+.u-row, .u-block-full {
+	margin-bottom: $block-margin;
+}
+
+.u-row,
+.u-block-full--grey,
+.u-block-full--black {
+	padding-top: $block-margin;
+	padding-bottom: $block-margin;
+	background-color: $grey;
+}
+
+.u-block-full--black {
+	background-color: $black;
+	color: white;
+}
+
+.u-block-full + style + .u-block-full, // needed for inline banner img styles TODO review where they should go
+.u-block-full + .u-block-full,
+.u-block-full + .u-row,
+.u-row + .u-block-full {
+	margin-top: -$block-margin;
+}
+
+.u-block-full--grey + .u-block-full--grey,
+.u-block-full--black + .u-block-full--black,
+.u-row + .u-row,
+.u-row + .u-block-full--grey,
+.u-block-full--grey + .u-row {
+	margin-top: -$block-margin * 2;
+}
+
+// Fix the extra space between last header grey block and first grey main block.
+main .u-block-full:first-child,
+main .u-row:first-child {
+	margin-top: -$block-margin;
+}
+
+.u-outer-space + main .u-row:first-child,
+.u-outer-space + main .u-block-full--grey:first-child {
+	margin-top: -$block-margin * 2 !important;
+}
+
+main .u-block-full--grey:last-of-type,
+main .u-block-full--black:last-of-type,
+main .u-row:last-of-type,
+footer .u-block-full--grey:last-of-type,
+footer .u-block-full--black:last-of-type {
+	margin-bottom: 0;
+}
+
+.u-block:not(.b-content) {
+	& a {
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	& h2 {
+		border-bottom: none;
+	}
+
+	& p:last-child {
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+
+	h2 {
+		margin-top: 0;
+	}
+}
+
+
+
+// 3. Icon utils
+// -------------
+
+.u-icon {
+	fill: $black;
+
+	& svg {
+		vertical-align: top; // removes the default inline space under svg
+	}
+}
+
+.u-icon--red svg path {
+	fill: $red;
+}
+
+.u-icon--grey svg path {
+	fill: $grey-vader;
+}
+
+.u-icon--white svg path {
+	fill: white;
+}
+
+// match svg size to accompanying text
+.u-icon--text {
+	display: inline-flex;
+	align-items: center;
+
+	// svg element
+	& svg {
+		display: inline-block;
+		height: 1em !important;
+		width: 1em !important;
+		margin-right: 0.175em; // you can change this
+		flex-shrink: 0;
+		top: 0.125em;
+		position: relative;
+	}
+}
+
+.u-icon--circle {
+	border-radius: 50%;
+	background-color: $grey;
+	display: inline-block;
+	padding: 15px;
+	line-height: 1 !important;
+}
+
+.u-icon--circle-white {
+	background-color: white;
+
+	&:hover {
+		background-color: $grey-vader;
+	}
+
+	&:hover svg path {
+		fill: white;
+	}
+}
+
+.u-icon--circle.u-icon--xxs {
+	padding: 2px;
+	height: 15px;
+}
+
+.u-icon--circle.u-icon--xs {
+	padding: 5px;
+	height: 25px;
+}
+
+.u-icon--circle.u-icon--s {
+	padding: 12px;
+}
+
+.u-icon--circle.u-icon--l {
+	padding: 18px;
+}
+
+.u-icon--circle.u-icon--xl {
+	padding: 22px;
+}
+
+.u-icon--circle.u-icon--xxl {
+	padding: 25px;
+}
+
+.u-icon-text--right svg {
+	margin-left: 0.175em; // you can change this
+}
+
+.u-icon--facebook:hover {
+	background-color: #3b5998;
+
+	svg path {
+		fill: white;
+	}
+}
+
+.u-icon--instagram:hover {
+	// background: #d6249f; // TODO: test that this is not needed for browser support
+	background: radial-gradient(
+		circle at 30% 107%,
+		#fdf497 0%,
+		#fdf497 5%,
+		#fd5949 45%,
+		#d6249f 60%,
+		#285aeb 90%
+	);
+
+	svg path {
+		fill: white;
+	}
+}
+
+.u-icon--twitter:hover {
+	background-color: #1da1f2;
+	svg path {
+		fill: white;
+	}
+}
+
+.u-icon--youtube:hover {
+	background-color: #ff0000;
+
+	svg path {
+		fill: white;
+	}
+
+	& svg path:last-child {
+		fill: #ff0000;
+	}
+}
+
+.u-icon--pinterest:hover {
+	background-color: #bd081c;
+
+	svg path {
+		fill: white;
+	}
+}
+
+.u-icon--linkedin:hover {
+	background-color: #007bb5;
+
+	svg path {
+		fill: white;
+	}
+}
+
+// TODO: NOT USED?
+//.u-icon--open {
+//    transition: all .4s ease-in-out;
+//}
+
+.u-icon-bg,
+.u-img-bg {
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.u-icon-bg--overlay {
+	position: absolute; // note: containing element needs to be position: relative
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	width: 100%;
+	height: 100%;
+}
+
+.u-icon-bg--m {
+	background-size: 30px;
+	width: 30px;
+	height: 30px;
+	display: block;
+}
+
+.u-icon--left svg {
+	margin-right: 4px;
+}
+
+.u-icon--xxs svg {
+	width: 10px;
+	height: 10px;
+}
+
+.u-icon--xs svg {
+	width: 20px;
+	height: 20px;
+}
+
+.u-icon--s svg {
+	width: 25px;
+	height: 25px;
+}
+
+.u-icon--m svg {
+	width: 30px;
+	height: 30px;
+}
+
+.u-icon--l svg {
+	width: 40px;
+	height: 40px;
+}
+
+.u-icon--xl svg {
+	width: 55px;
+	height: 55px;
+}
+
+.u-icon--xxl svg {
+	width: 75px;
+	height: 75px;
+}
+
+// 4. Property overrides
+// ----------------------
+
+.u-no-borders {
+	border: none;
+}
+
+.u-no-margin {
+	margin: 0 !important;
+}
+
+.u-no-margin-bottom {
+	margin-bottom: 0 !important;
+}
+
+.u-no-padding-top {
+	padding-top: 0 !important;
+}
+
+.u-no-margin-right {
+	margin-right: 0 !important;
+}
+
+// 5. Centering
+// ------------
+
+// per https://codepen.io/codyhouse/pen/RBVQdQ
+.u-center {
+	display: flex;
+
+	&--center {
+		margin: auto;
+		align-self: center;
+	}
+
+	&--left {
+		margin-right: auto;
+		align-self: center;
+	}
+
+	&--right {
+		margin-left: auto;
+		align-self: center;
+	}
+
+	&--x-center {
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	&--x-left {
+		margin-right: auto;
+	}
+
+	&--x-right {
+		margin-left: auto;
+	}
+
+	&--y-center {
+		align-self: center;
+	}
+
+	&--y-top {
+		align-self: flex-start;
+	}
+
+	&--y-bottom {
+		align-self: flex-end;
+	}
+}
+
+//TODO Replace two below with new utils above
+.u-center-vert {
+	display: flex;
+	align-items: center;
+}
+
+.u-center-hor {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	//margin: 0 auto;
+}
+
+// add to block level parent
+.u-center-inline {
+	text-align: center;
+	vertical-align: middle; // Align children to middle of line
+}
+
+.u-center-absolute {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate (-50% -50%);
+}
+
+// 6. Misc utils
+// -------------
+
+.u-btn-reset {
+	padding: 0;
+	border: none;
+	outline: none;
+	font: inherit;
+	color: inherit;
+	background: none;
+}
+.u-sticky {
+	position: sticky;
+	//top: 15px;
+}
+
+.u-display-none,
+.is-hidden {
+	display: none !important;
+}
+
+.u-display-inline-b {
+	display: inline-block !important;
+}
+
+.u-whitespace-wrap {
+	white-space: normal !important;
+}
+
+.u-visually-hidden {
+	clip: rect(1px, 1px, 1px, 1px);
+	padding: 0 !important;
+	border: 0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+	position: absolute;
+}
+
+// add transparent, dark overlay over images, banners, etc.
+.u-overlay {
+	position: relative;
+}
+
+.u-overlay:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.45);
+}
+
+.u-overlay--light:before {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.u-overlay--dark:before {
+	background-color: rgba(0, 0, 0, 0.65);
+}
+
+// 7. Content
+// -----------
+
+.u-color-red {
+	color: $red;
+}
+
+// TODO look for function to replace wp"s alignleft
+.u-img-left,
+.alignleft {
+	float: left;
+	margin-right: 30px;
+}
+
+// TODO look for function to replace wp"s alignright
+.u-img-right,
+.alignright {
+	float: right;
+	margin-left: 30px;
+}
+
+// todo why is this here?
+// hide on small screens
+@include media("<=s") {
+	.u-hide-s {
+		display: none;
+	}
+}

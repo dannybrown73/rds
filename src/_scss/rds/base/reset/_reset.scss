@@ -1,0 +1,57 @@
+// Edited version of minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-weight: 400;
+}
+
+button,
+input,
+select,
+textarea {
+	margin: 0;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+//img,
+//embed,
+//iframe,
+//object,
+//audio,
+//video {
+//    height:auto;
+//    max-width:100%
+//}
+
+iframe {
+	border: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+	text-align: left;
+}
